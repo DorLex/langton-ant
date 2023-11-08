@@ -7,7 +7,7 @@ ANT_X_START = 512
 ANT_Y_START = 512
 
 
-class AntDirection(Enum):
+class Direction(Enum):
     UP = 0
     RIGHT = 1
     DOWN = 2

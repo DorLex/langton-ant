@@ -1,44 +1,37 @@
 import numpy as np
-from PIL import Image
 
 from project.ant import Ant
-from project.configs import WIDTH, HEIGHT, ANT_X_START, ANT_Y_START, AntDirection, Color
+from project.configs import WIDTH, HEIGHT, ANT_X_START, ANT_Y_START, Direction, Color
+from project.services.ant_service import move_ant, turn_clockwise, turn_counterclockwise
+from project.services.grid_service import change_color_to_black, change_color_to_white
+from project.services.image_service import generate_png_from_array
 
 
 def main():
     grid = np.full((WIDTH, HEIGHT), Color.WHITE.value, dtype=np.uint8)
 
-    ant = Ant(ANT_X_START, ANT_Y_START, AntDirection.UP.value)
+    ant = Ant(ANT_X_START, ANT_Y_START, Direction.UP.value)
 
     black_cell_count = 0
-
     while 0 <= ant.x < WIDTH and 0 <= ant.y < HEIGHT:
 
-        # Белая клетка
+        # Если находимся на белой клетке
         if grid[ant.y, ant.x] == Color.WHITE.value:
-            ant.direction = (ant.direction + 1) % 4
-            grid[ant.y, ant.x] = Color.BLACK.value
-
-        # Черная клетка
-        else:
-            ant.direction = (ant.direction - 1) % 4
-            grid[ant.y, ant.x] = Color.WHITE.value
+            turn_clockwise(ant)
+            change_color_to_black(grid, ant)
             black_cell_count += 1
 
-        # Двигаем муравья вперед в соответствии с текущим направлением
-        if ant.direction == 0:
-            ant.y -= 1
-        elif ant.direction == 1:
-            ant.x += 1
-        elif ant.direction == 2:
-            ant.y += 1
+        # Если находимся на черной клетке
         else:
-            ant.x -= 1
+            turn_counterclockwise(ant)
+            change_color_to_white(grid, ant)
+            black_cell_count -= 1
 
-    image = Image.fromarray(grid, mode='L').convert('1')
-    image.save('langton_ant.png', format='PNG')
+        move_ant(ant)
 
-    print('Число черных клеток:', black_cell_count)
+    generate_png_from_array(grid)
+
+    print(f'Количество черных клеток: {black_cell_count}')
 
 
 if __name__ == '__main__':
