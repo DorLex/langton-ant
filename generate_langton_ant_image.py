@@ -6,7 +6,6 @@ from project.enums.color import Color
 from project.enums.direction import Direction
 from project.enums.grid_size import GridSize
 
-from project.services.grid import ant_change_grid
 from project.services.image import generate_png_from_array
 
 
@@ -19,7 +18,7 @@ def main():
 
     ant = Ant(AntCoordinates.X_START.value, AntCoordinates.Y_START.value, Direction.UP.value)
 
-    grid, black_cell_count = ant_change_grid(grid, ant)
+    grid, black_cell_count = ant.change_grid(grid)
 
     generate_png_from_array(grid)
 
