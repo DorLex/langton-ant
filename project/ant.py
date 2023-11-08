@@ -1,4 +1,4 @@
-from project.configs import Direction
+from project.enums.direction import Direction
 
 
 class Ant:
