@@ -3,8 +3,8 @@ import numpy as np
 from project.ant import Ant
 from project.configs import WIDTH, HEIGHT, ANT_X_START, ANT_Y_START, Direction, Color
 
-from project.services.grid_service import ant_change_grid
-from project.services.image_service import generate_png_from_array
+from project.services.grid import ant_change_grid
+from project.services.image import generate_png_from_array
 
 
 def main():
