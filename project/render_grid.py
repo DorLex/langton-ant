@@ -1,10 +1,12 @@
+import numpy as np
+
 from .ant import Ant
 from .enums.color import Color
 from .enums.grid_size import GridSize
 from .grid import Grid
 
 
-def render_result_grid_array(grid: Grid, ant: Ant):
+def render_result_grid_array(grid: Grid, ant: Ant) -> np.ndarray:
     while 0 <= ant.x < GridSize.WIDTH.value and 0 <= ant.y < GridSize.HEIGHT.value:
 
         # Если находимся на белой клетке
