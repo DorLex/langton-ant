@@ -1,8 +1,10 @@
-from project.enums.color import Color
-from project.enums.grid_size import GridSize
+from .ant import Ant
+from .enums.color import Color
+from .enums.grid_size import GridSize
+from .grid import Grid
 
 
-def render_result_grid_array(grid, ant):
+def render_result_grid_array(grid: Grid, ant: Ant):
     while 0 <= ant.x < GridSize.WIDTH.value and 0 <= ant.y < GridSize.HEIGHT.value:
 
         # Если находимся на белой клетке

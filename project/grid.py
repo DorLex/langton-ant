@@ -1,6 +1,6 @@
 import numpy as np
 
-from project.enums.color import Color
+from .enums.color import Color
 
 
 class Grid:
