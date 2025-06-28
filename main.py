@@ -1,25 +1,41 @@
+import logging
+from logging import getLogger, Logger, INFO
+
 import numpy as np
 
-from project.ant import Ant
-from project.enums.ant_coordinates import AntCoordinates
-from project.enums.color import Color
-from project.enums.direction import Direction
-from project.enums.grid_size import GridSize
-from project.grid import Grid
-from project.render_grid import render_result_grid_array
+from src.ant import Ant
+from src.enums.ant_coordinates import AntCoordinates
+from src.enums.color import Color
+from src.enums.direction import Direction
+from src.enums.grid_size import GridSize
+from src.grid import Grid
+from src.render_grid import render_result_grid_array
+from src.services.image import generate_png_from_array
 
-from project.services.image import generate_png_from_array
+logging.basicConfig(level=INFO)
+
+logger: Logger = getLogger(__name__)
 
 
 def main():
-    grid = Grid(GridSize.WIDTH.value, GridSize.HEIGHT.value, Color.WHITE.value, np.uint8)
-    ant = Ant(AntCoordinates.X_START.value, AntCoordinates.Y_START.value, Direction.UP.value)
+    grid: Grid = Grid(
+        GridSize.WIDTH.value,
+        GridSize.HEIGHT.value,
+        Color.WHITE.value,
+        np.uint8,
+    )
 
-    result_grid_array = render_result_grid_array(grid, ant)
+    ant: Ant = Ant(
+        AntCoordinates.X_START.value,
+        AntCoordinates.Y_START.value,
+        Direction.UP.value,
+    )
+
+    result_grid_array: np.ndarray = render_result_grid_array(grid, ant)
 
     generate_png_from_array(result_grid_array)
 
-    print(f'Количество черных клеток: {grid.black_cell_count}')
+    logger.info(f'Количество черных клеток: {grid.black_cell_count}')
 
 
 if __name__ == '__main__':
