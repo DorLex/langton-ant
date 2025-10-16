@@ -1,39 +1,39 @@
 import logging
-from logging import getLogger, Logger, INFO
+from logging import INFO, Logger, getLogger
 
 import numpy as np
 
-from src.ant import Ant
-from src.enums.ant_coordinates import AntCoordinates
+from src.entities.ant import Ant
+from src.entities.grid import Grid
+from src.enums.ant import StartAntCoordinates
 from src.enums.color import Color
 from src.enums.direction import Direction
-from src.enums.grid_size import GridSize
-from src.grid import Grid
-from src.render_grid import render_result_grid_array
-from src.services.image import generate_png_from_array
+from src.enums.grid import GridSize
+from src.services.render import Renderer
 
 logging.basicConfig(level=INFO)
 
 logger: Logger = getLogger(__name__)
 
 
-def main():
+def main() -> None:
     grid: Grid = Grid(
-        GridSize.WIDTH.value,
-        GridSize.HEIGHT.value,
-        Color.WHITE.value,
+        GridSize.WIDTH,
+        GridSize.HEIGHT,
+        Color.WHITE,
         np.uint8,
     )
 
     ant: Ant = Ant(
-        AntCoordinates.X_START.value,
-        AntCoordinates.Y_START.value,
-        Direction.UP.value,
+        StartAntCoordinates.X_START,
+        StartAntCoordinates.Y_START,
+        Direction.UP,
     )
 
-    result_grid_array: np.ndarray = render_result_grid_array(grid, ant)
+    renderer: Renderer = Renderer(grid, ant)
 
-    generate_png_from_array(result_grid_array)
+    renderer.generate_grid_matrix()
+    renderer.generate_result_png()
 
     logger.info(f'Количество черных клеток: {grid.black_cell_count}')
 
