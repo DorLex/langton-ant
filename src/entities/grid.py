@@ -17,7 +17,7 @@ class Grid:
         self.black_cell_count: int = 0
 
     def change_color_to_black(self, x: int, y: int) -> None:
-        self.grid_array[y, x] = Color.BLACK.value
+        self.grid_array[y, x] = Color.BLACK
 
     def change_color_to_white(self, x: int, y: int) -> None:
-        self.grid_array[y, x] = Color.WHITE.value
+        self.grid_array[y, x] = Color.WHITE

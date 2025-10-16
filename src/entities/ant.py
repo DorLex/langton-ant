@@ -15,11 +15,11 @@ class Ant:
 
     def move(self) -> None:
         match self.direction:
-            case Direction.UP.value:
+            case Direction.UP:
                 self.y -= 1
-            case Direction.RIGHT.value:
+            case Direction.RIGHT:
                 self.x += 1
-            case Direction.DOWN.value:
+            case Direction.DOWN:
                 self.y += 1
             case _:
                 self.x -= 1
