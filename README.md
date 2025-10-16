@@ -43,8 +43,9 @@
     poetry install --no-root
     ```
 
-### Запуск:
+### Использование:
 
-```shell
+- Запуск:
+    ```shell
     python main.py
-```
+    ```
