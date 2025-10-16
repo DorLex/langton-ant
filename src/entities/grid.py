@@ -16,8 +16,5 @@ class Grid:
 
         self.black_cell_count: int = 0
 
-    def change_color_to_black(self, x: int, y: int) -> None:
-        self.matrix[y, x] = Color.BLACK
-
-    def change_color_to_white(self, x: int, y: int) -> None:
-        self.matrix[y, x] = Color.WHITE
+    def change_cell_color(self, x: int, y: int, color: Color) -> None:
+        self.matrix[y, x] = color

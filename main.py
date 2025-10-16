@@ -9,7 +9,6 @@ from src.enums.ant import StartAntCoordinates
 from src.enums.color import Color
 from src.enums.direction import Direction
 from src.enums.grid import GridSize
-
 from src.services.render import Renderer
 
 logging.basicConfig(level=INFO)
