@@ -1,19 +1,19 @@
-from .enums.direction import Direction
+from src.enums.direction import Direction
 
 
 class Ant:
-    def __init__(self, x, y, direction):
+    def __init__(self, x: int, y: int, direction: int) -> None:
         self.x = x
         self.y = y
         self.direction = direction
 
-    def turn_clockwise(self):
+    def turn_clockwise(self) -> None:
         self.direction = (self.direction + 1) % 4
 
-    def turn_counterclockwise(self):
+    def turn_counterclockwise(self) -> None:
         self.direction = (self.direction - 1) % 4
 
-    def move(self):
+    def move(self) -> None:
         match self.direction:
             case Direction.UP.value:
                 self.y -= 1

@@ -1,14 +1,14 @@
 import logging
-from logging import getLogger, Logger, INFO
+from logging import INFO, Logger, getLogger
 
 import numpy as np
 
-from src.ant import Ant
+from src.entities.ant import Ant
+from src.entities.grid import Grid
 from src.enums.ant_coordinates import AntCoordinates
 from src.enums.color import Color
 from src.enums.direction import Direction
 from src.enums.grid_size import GridSize
-from src.grid import Grid
 from src.render_grid import render_result_grid_array
 from src.services.image import generate_png_from_array
 
@@ -17,7 +17,7 @@ logging.basicConfig(level=INFO)
 logger: Logger = getLogger(__name__)
 
 
-def main():
+def main() -> None:
     grid: Grid = Grid(
         GridSize.WIDTH.value,
         GridSize.HEIGHT.value,
