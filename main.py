@@ -9,8 +9,8 @@ from src.enums.ant import StartAntCoordinates
 from src.enums.color import Color
 from src.enums.direction import Direction
 from src.enums.grid import GridSize
-from src.render_grid import render_result_grid_array
-from src.services.image import generate_png_from_array
+
+from src.services.render import Renderer
 
 logging.basicConfig(level=INFO)
 
@@ -31,9 +31,10 @@ def main() -> None:
         Direction.UP,
     )
 
-    result_grid_array: np.ndarray = render_result_grid_array(grid, ant)
+    renderer: Renderer = Renderer(grid, ant)
 
-    generate_png_from_array(result_grid_array)
+    renderer.generate_grid_matrix()
+    renderer.generate_result_png()
 
     logger.info(f'Количество черных клеток: {grid.black_cell_count}')
 
