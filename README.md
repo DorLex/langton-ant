@@ -43,6 +43,18 @@
     poetry install --no-root
     ```
 
+### Pre-commit, Linter, Formatter:
+
+- Установить `pre-commit` хуки:
+    ```shell
+    pre-commit install
+    ```
+
+- Ручной запуск линтера и форматера:
+    ```shell
+    ruff check --fix --show-fixes && ruff format
+    ```
+
 ### Использование:
 
 - Запуск:
